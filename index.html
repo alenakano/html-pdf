@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Conversor de PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  
+  <script> 
+    $(document).ready(function(){
+        $("#openCert").click(() =>{
+            $("#atestado").hide();
+            $("#certificado").show();
+        });
+
+        $("#openAtest").click(() =>{
+            $("#certificado").hide();
+            $("#atestado").show();
+        });
+
+        $("#gCert").click(function(){
+            let nome = $.trim($("#nome").val());
+            let curso = $.trim($("#curso").val());
+            let nota = $.trim($("#media").val());
+            let frequencia = $.trim($("#freq").val());
+
+            let data = new Date($.trim($('#calen').val()));
+            let dia = data.getDate() + 1;
+            let mes = data.getMonth() + 1;
+            let ano = data.getFullYear();
+            if(nome && curso && nota && frequencia && dia && mes && ano) {
+                $("#erro").hide();
+                getCertPdf(nome, curso, nota, frequencia, dia, mes, ano);
+                $("#data").val("")
+            } else {
+		        console.log('erro');
+		        $("#erro").show();
+            }
+        });
+
+        $("#gAtest").click(function(){
+            let nome = $.trim($("#nomeA").val());
+            let curso = $.trim($("#cursoA").val());
+
+            let data = new Date($.trim($('#calenA').val()));
+            let dia = data.getDate() + 1;
+            let mes = data.getMonth() + 1;
+            let ano = data.getFullYear();
+            if(nome && curso && dia && mes && ano) {
+                $("#erro").hide();
+                getAtestPdf(nome, curso, dia, mes, ano);
+                $("#data").val("")
+            } else {
+		        console.log('erro');
+		        $("#erro").show();
+            }
+        });
+    });
+
+    function getCertPdf(nome, curso, nota, frequencia, dia, mes, ano) {
+        location.assign(`http://localhost:3000/certificado?nome=${nome}&curso=${curso}&nota=${nota}&frequencia=${frequencia}&dia=${dia}&mes=${mes}&ano=${ano}`)
+    }
+
+    function getAtestPdf(nome, curso, dia, mes, ano) {
+        location.assign(`http://localhost:3000/atestado?nome=${nome}&curso=${curso}&dia=${dia}&mes=${mes}&ano=${ano}`)
+
+    }
+  </script>
+
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="jumbotron shadow jumbotron-fluid bg-info">
+        <div class="container">
+            <h1 id="titulo" class="text-center">Conversor de texto em PDF</h1>
+        </div>
+    </div>
+
+    <div 
+        class="container col-sm-7 alert alert-danger text-center" 
+        style="display:none" 
+        id="erro"
+    >Favor preencher todos os campos
+    </div>
+
+  <div class="col-md-3 center-block" style="margin:auto; margin-bottom: 20px">
+        <button class="btn btn-lg btn-primary center-block" id="openCert">Certificado</button>
+        <button class="btn btn-lg btn-primary center-block" id="openAtest">Atestado</button>
+  </div>
+
+    <div class="container" id="certificado" style="display:none">
+        <div class="form-group">
+            <h3>Certificado:</h3>    
+            <label for="nome">Aluno(a):</label>
+            <input id="nome" class="form-control" placeholder="Digite o nome do(a) aluno(a)"/>
+            <br>
+            <label for="curso">Curso:</label>
+            <input id="curso" class="form-control" placeholder="Digite o curso"/>
+            <br>
+            <label for="media">Média final:</label>
+            <input id="media" type="number" class="form-control" placeholder="Digite a média final"/>
+            <br>
+            <label for="freq">Frequência:</label>
+            <input id="freq" type="number" class="form-control" placeholder="Digite a média final"/>
+            <br>
+            <label for="calen">Data de formatura:</label>
+            <input id="calen" type="date" class="form-control"/>
+        <br>  
+        </div>
+        <button class="btn btn-md btn-success btn-space" id="gCert">Gerar certificado</button>
+    </div> 
+
+    <div class="container" id="atestado" style="display:none">
+        <div class="form-group">
+            <h3>Atestado:</h3>
+            <label for="nomeA">Aluno(a):</label>
+            <input id="nomeA" class="form-control" placeholder="Digite o nome do(a) aluno(a)"/>
+            <br>
+            <label for="cursoA">Curso:</label>
+            <input id="cursoA" class="form-control" placeholder="Digite o curso"/>
+            <br>
+            <label for="calenA">Data:</label>
+            <input id="calenA" type="date" class="form-control"/>
+            <br>  
+        </div>
+        <button class="btn btn-md btn-success btn-space" id="gAtest">Gerar atestado</button>
+    </div> 
+
+</body>
+</html>
