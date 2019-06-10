@@ -5,7 +5,7 @@ const templates = require('../templates/templates');
 module.exports = function(app) {
 
     app.get('/certificado', function(req, response) {
-        var options = { format: 'Letter' };
+        var options = { format: 'Letter',  orientation: "landscape" };
         let obj = templates.pdfCertificado(req.query);
 	    pdf.create(obj, options).toStream(function(err, stream){
     
