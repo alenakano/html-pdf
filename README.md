@@ -1,5 +1,13 @@
 # Projeto de emissão de PDF
 
+### Membros da Equipe:
+* Alexandre Nakano Marques (https://github.com/alenakano)
+* Guilherme Maia Lobato
+* Kaleby Barbosa Jaun Rodrigues (https://github.com/KalebyJaun)
+* Naomi Cristina Tabata (https://github.com/na8na10)
+* Thiago Pena Guedes (https://github.com/kensaither)
+
+
 ## Descrição geral
 O projeto possui um servidor NodeJS com Express configurado para servir duas rotas GET: uma gera certificados de conclusão de curso (**/certificado**) e outra gera atestado de matrícula (**/atestado**).
 
