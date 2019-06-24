@@ -1,3 +1,28 @@
+# Export PDF project
+
+### Team Members:
+* Alexandre Nakano Marques (https://github.com/alenakano)
+* Guilherme Maia Lobato
+* Kaleby Barbosa Jaun Rodrigues (https://github.com/KalebyJaun)
+* Naomi Cristina Tabata (https://github.com/na8na10)
+* Thiago Pena Guedes (https://github.com/kensaither)
+
+
+## Overview
+This project is composed of a NodeJS and Express server configured with two GET routes: the first one generates course certification  (**/certificado**) e other one generates enrollment certification(**/atestado**).
+
+Besides the server, this project has an **index.html** that is a frontend with forms that will fill the informations of the chosen certificate. This form will be sent to the node server and will be responded with a downloadable PDF file.
+
+## Set Up
+After installing the latest LTS NodeJS version and check the node environment variables (check in a command line the commands **node** and **npm**).
+
+Clone this project to your device and execute the command **npm install** in a command line inside the folder of the project (same level that is the file **package.json**).
+
+After the download of the dependencies, you will be able to execute the command **npm start** and access the routes using the file **index.html** of this project.
+
+
+
+
 # Projeto de emissão de PDF
 
 ### Membros da Equipe:
